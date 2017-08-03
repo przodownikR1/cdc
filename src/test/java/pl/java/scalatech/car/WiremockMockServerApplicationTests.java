@@ -20,9 +20,8 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment=WebEnvironment.NONE)
+@SpringBootTest(webEnvironment = WebEnvironment.NONE)
 @DirtiesContext
 public class WiremockMockServerApplicationTests {
     private List<String> cars = newArrayList("ford", "porsche", "mercedes");
@@ -36,20 +35,20 @@ public class WiremockMockServerApplicationTests {
         }
     }
 
-	@Autowired
-	private RestTemplate restTemplate;
+    @Autowired
+    private RestTemplate restTemplate;
 
-	@Autowired
-	private CarService service;
+    @Autowired
+    private CarService service;
 
-	@Test
-	@Ignore
-	public void contextLoads() throws Exception {
-		MockRestServiceServer server = WireMockRestServiceServer.with(this.restTemplate) 
-				.baseUrl("http://example.org") //
-				.stubs("classpath:/stubs/getCars.json").build();
-		assertThat(this.service.getCars()).isEqualTo(cars);
-		server.verify();
-	}
+    @Test
+    @Ignore
+    public void contextLoads() throws Exception {
+        MockRestServiceServer server = WireMockRestServiceServer.with(this.restTemplate)
+                .baseUrl("http://example.org") //
+                .stubs("classpath:/stubs/getCars.json").build();
+        assertThat(this.service.getCars()).isEqualTo(cars);
+        server.verify();
+    }
 
 }

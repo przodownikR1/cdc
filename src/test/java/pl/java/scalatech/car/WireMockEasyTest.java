@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @DirtiesContext
 @RunWith(SpringRunner.class)
-@SpringBootTest(properties="app.baseUrl=http://localhost:6060", webEnvironment=WebEnvironment.NONE)
+@SpringBootTest(properties = "app.baseUrl=http://localhost:6060", webEnvironment = WebEnvironment.NONE)
 @AutoConfigureWireMock(port = 6060)
 public class WireMockEasyTest {
     private List<String> cars = newArrayList("ford", "porsche", "mercedes");
@@ -42,7 +42,7 @@ public class WireMockEasyTest {
 
     @Autowired
     private CarService service;
-    
+
     @Autowired
     private RestTemplate restTemplate;
 
@@ -52,11 +52,12 @@ public class WireMockEasyTest {
                 .willReturn(aResponse().withHeader(CONTENT_TYPE, APPLICATION_JSON_UTF8_VALUE).withBody(json)));
         assertThat(this.restTemplate.getForObject("http://localhost:6060/cars", List.class)).isEqualTo(cars);
         assertThat(service.getCars()).isEqualTo(cars);
-        
+
     }
+
     @Test
-    public void integrationTest(){
-        
+    public void integrationTest() {
+
     }
 
 }

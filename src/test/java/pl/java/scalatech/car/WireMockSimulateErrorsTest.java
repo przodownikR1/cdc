@@ -31,21 +31,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.http.Fault;
 import com.github.tomakehurst.wiremock.junit.WireMockClassRule;
 
+// NONE will only create spring beans not any mock servlet environment.
 
-//NONE will only create spring beans not any mock servlet environment.
+// MOCK will create spring beans and a mock servlet environment.
 
-//MOCK will create spring beans and a mock servlet environment.
+// RANDOM_PORT will start the actual Servlet container on a random port, this can be autowired using the @LocalServerPort.
 
-//RANDOM_PORT will start the actual Servlet container on a random port, this can be autowired using the @LocalServerPort.
+// @LocalServerPort
+// protected int serverPort;
 
-//@LocalServerPort
-//protected int serverPort;
-
-//DEFINED_PORT will take the defined port in the properties and start the server on them. The default is RANDOM_PORT when u dont define any webEnvironment. 
+// DEFINED_PORT will take the defined port in the properties and start the server on them. The default is RANDOM_PORT when u dont define any webEnvironment.
 
 @DirtiesContext
 @RunWith(SpringRunner.class)
-@SpringBootTest(properties = "app.baseUrl=http://localhost:6061", webEnvironment = WebEnvironment.NONE)//?
+@SpringBootTest(properties = "app.baseUrl=http://localhost:6061", webEnvironment = WebEnvironment.NONE)// ?
 public class WireMockSimulateErrorsTest {
 
     private List<String> cars = newArrayList("ford", "porsche", "mercedes");
@@ -68,15 +67,15 @@ public class WireMockSimulateErrorsTest {
 
     @Autowired
     private CarService service;
-    
-    private TestRestTemplate restTemplate = new TestRestTemplate();//?
+
+    private TestRestTemplate restTemplate = new TestRestTemplate();// ?
 
     @Test
     public void getCars() throws Exception {
         stubFor(get(urlEqualTo("/cars"))
                 .willReturn(aResponse().withHeader(CONTENT_TYPE, APPLICATION_JSON_UTF8_VALUE).withBody(json)));
         assertThat(this.service.getCars()).isEqualTo(cars);
-        assertThat(this.restTemplate.getForObject("http://localhost:6061/cars", List.class)).isEqualTo(cars);//?
+        assertThat(this.restTemplate.getForObject("http://localhost:6061/cars", List.class)).isEqualTo(cars);// ?
     }
 
     @Test
@@ -97,6 +96,4 @@ public class WireMockSimulateErrorsTest {
         assertThat(this.restTemplate.getForObject("http://localhost:6061/cars", List.class)).isEqualTo(cars);
     }
 
-    
-    
 }

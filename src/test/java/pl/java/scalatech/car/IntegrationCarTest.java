@@ -23,9 +23,9 @@ public class IntegrationCarTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
-    
-   static ObjectMapper mapper = new ObjectMapper();
-    
+
+    static ObjectMapper mapper = new ObjectMapper();
+
     static String json;
     {
         List<String> cars = Lists.newArrayList("ford", "porsche", "mercedes");

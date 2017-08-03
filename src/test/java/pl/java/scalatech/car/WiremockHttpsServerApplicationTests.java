@@ -27,10 +27,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.junit.WireMockClassRule;
 
-
 @DirtiesContext
 @RunWith(SpringRunner.class)
-@SpringBootTest(properties="app.baseUrl=https://localhost:8443")
+@SpringBootTest(properties = "app.baseUrl=https://localhost:8443")
 @AutoConfigureHttpClient
 @Ignore
 public class WiremockHttpsServerApplicationTests {

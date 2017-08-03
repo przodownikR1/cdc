@@ -16,10 +16,9 @@ class CarController {
 
     private final CarService service;
 
-    @GetMapping(value="/cars",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/cars", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     List<String> cars() {
-        log.info("cars body : {}",service.getCars());
+        log.info("cars body : {}", service.getCars());
         return this.service.getCars();
     }
 }
-

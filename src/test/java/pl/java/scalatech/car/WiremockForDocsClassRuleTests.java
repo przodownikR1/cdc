@@ -26,8 +26,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.junit.WireMockClassRule;
 
-
-
 @DirtiesContext
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -49,8 +47,8 @@ public class WiremockForDocsClassRuleTests {
         }
     }
     @Autowired
-    private TestRestTemplate restTemplate;//!
-    
+    private TestRestTemplate restTemplate;// !
+
     @Before
     public void setup() {
         this.service.setBase("http://localhost:" + wiremock.port());

@@ -29,7 +29,7 @@ import com.github.tomakehurst.wiremock.junit.WireMockClassRule;
 
 @RunWith(SpringRunner.class)
 @DirtiesContext
-@SpringBootTest(properties = "app.baseUrl=http://localhost:6060", webEnvironment = WebEnvironment.NONE)//!
+@SpringBootTest(properties = "app.baseUrl=http://localhost:6060", webEnvironment = WebEnvironment.NONE)// !
 @AutoConfigureWireMock(port = 6060)
 public class WiremockImportApplicationTests {
     private List<String> cars = newArrayList("ford", "porsche", "mercedes");
@@ -51,7 +51,7 @@ public class WiremockImportApplicationTests {
             e.printStackTrace();
         }
     }
-    
+
     @Autowired
     private RestTemplate restTemplate;
 
@@ -64,7 +64,7 @@ public class WiremockImportApplicationTests {
     }
 
     @Test
-    public void shouldNotEqualBody(){
+    public void shouldNotEqualBody() {
         stubFor(get(urlEqualTo("/cars"))
                 .willReturn(aResponse().withHeader(CONTENT_TYPE, APPLICATION_JSON_UTF8_VALUE).withBody(json2)));
         assertThat(this.restTemplate.getForObject("http://localhost:6060/cars", List.class)).isNotEqualTo(cars);
