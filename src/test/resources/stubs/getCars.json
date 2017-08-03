@@ -1,0 +1,10 @@
+{
+  "request" : {
+    "urlPath" : "/cars",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : ["ford","porsche","mercedes"]
+  }
+}
